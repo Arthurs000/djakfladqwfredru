@@ -201,7 +201,19 @@ class Cliente(Usuario):
           break
         self.endereco.bairro = input("        Bairro:")
         self.endereco.rua = input("        Rua:")
-        self.endereco.num_res = input("        Número Residencial:")
+        try:
+          self.endereco.num_res = input("        Número Residencial:")
+          for r in self.endereco.num_res:
+            if r.isdigit()==False:
+              raise ValueError
+            if len(self.endereco.num_res) != 4:
+              raise IndexError
+        except ValueError:
+          print ("Por favor, insira apenas números.")
+          break  
+        except IndexError:
+          print ("Por favor, insira um número válido.")
+          break
         try:
           self.cpf = input("        CPF:")
           for r in self.cpf:
