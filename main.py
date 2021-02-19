@@ -186,16 +186,41 @@ class Cliente(Usuario):
           break
         self.email = input("        E-mail:")
         self.senha = input("        Senha:")
-        self.telefone = input("        Telefone:")
+        try:
+          self.telefone = input("        Telefone:")
+          for r in self.telefone:
+            if r.isdigit()==False:
+              raise ValueError
+          if len(self.telefone) != 9 and len(self.telefone) != 11:
+            raise IndexError
+        except ValueError:
+          print ("Por favor, insira apenas números.")
+          break
+        except IndexError:
+          print("Por favor, insira um número válido")
+          break
         self.endereco.bairro = input("        Bairro:")
         self.endereco.rua = input("        Rua:")
         self.endereco.num_res = input("        Número Residencial:")
-        self.cpf = input("        CPF:")
+        try:
+          self.cpf = input("        CPF:")
+          for r in self.cpf:
+            if r.isdigit()==False:
+              raise ValueError
+          if len(self.cpf) != 11:
+            raise IndexError
+        except ValueError:
+          print ("Por favor, insira apenas números.")
+          break
+        except IndexError:
+          print("Por favor, insira um cpf válido")
+          break
         print("=================================================")
         print("              🔒Informações Financeiras🔒")
         self.numero_cartao = input("        Número do Cartão:")
         self.cvv = input("        CVV:")
         self.validade_cartao = input("        Validade do Cartão:")
+        break
 
     def exibir_cliente(self):
         print("=================================================")
