@@ -173,8 +173,17 @@ class Cliente(Usuario):
     # Antes, o método cadastrar era simplesmente o construtor. Como o código
     # foi feito apenas para cadastro de clientes, contém um input nessa classe
     def cadastrar_cliente(self):
+      while True:
         print("              Insira seus dados")
-        self.nome = input("        Nome:")
+        try:
+          self.nome = input("        Nome:")
+          for r in self.nome:
+            if r.isalpha()==False:
+              if ' ' not in r:
+                raise ValueError
+        except ValueError:
+          print ("Por favor, utilize apenas letras.")
+          break
         self.email = input("        E-mail:")
         self.senha = input("        Senha:")
         self.telefone = input("        Telefone:")
