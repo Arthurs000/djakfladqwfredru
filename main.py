@@ -97,6 +97,8 @@ class Endereco:
         self.rua = rua
         self.num_res = num_res
 
+class ExcecaoTamanhoInvalido(Exception):
+  pass
 
 class Usuario:
     def __init__(self, nome, email, senha, telefone):
@@ -192,11 +194,11 @@ class Cliente(Usuario):
             if r.isdigit()==False:
               raise ValueError
           if len(self.telefone) != 9 and len(self.telefone) != 11:
-            raise IndexError
+            raise ExcecaoTamanhoInvalido()
         except ValueError:
           print ("Por favor, insira apenas números.")
           break
-        except IndexError:
+        except ExcecaoTamanhoInvalido:
           print("Por favor, insira um número válido")
           break
         self.endereco.bairro = input("        Bairro:")
@@ -207,11 +209,11 @@ class Cliente(Usuario):
             if r.isdigit()==False:
               raise ValueError
             if len(self.endereco.num_res) != 4 and len(self.endereco.num_res) != 3:
-              raise IndexError
+              raise ExcecaoTamanhoInvalido()
         except ValueError:
           print ("Por favor, insira apenas números.")
           break  
-        except IndexError:
+        except ExcecaoTamanhoInvalido:
           print ("Por favor, insira um número válido.")
           break
         try:
@@ -220,11 +222,11 @@ class Cliente(Usuario):
             if r.isdigit()==False:
               raise ValueError
           if len(self.cpf) != 11:
-            raise IndexError
+            raise ExcecaoTamanhoInvalido()
         except ValueError:
           print ("Por favor, insira apenas números.")
           break
-        except IndexError:
+        except ExcecaoTamanhoInvalido:
           print("Por favor, insira um cpf válido")
           break
         print("=================================================")
@@ -235,11 +237,11 @@ class Cliente(Usuario):
             if r.isdigit()==False:
               raise ValueError
           if len(self.numero_cartao) != 16:
-            raise IndexError
+            raise ExcecaoTamanhoInvalido()
         except ValueError:
           print("Por favor, insira apenas números.")
           break
-        except IndexError:
+        except ExcecaoTamanhoInvalido:
           print("Por favor, insira um número de cartão válido")
           break          
         try:
@@ -248,11 +250,11 @@ class Cliente(Usuario):
             if r.isdigit()==False:
               raise ValueError
           if len(self.cvv) != 3:
-            raise IndexError
+            raise ExcecaoTamanhoInvalido()
         except ValueError:
           print("Por favor, insira apenas números.")
           break
-        except IndexError:
+        except ExcecaoTamanhoInvalido:
           print("Por favor, insira um cvv válido.")
           break          
         try:
@@ -261,13 +263,14 @@ class Cliente(Usuario):
             if r.isdigit()==False:
               raise ValueError
           if len(self.validade_cartao) != 4:
-            raise IndexError
+            raise ExcecaoTamanhoInvalido()
         except ValueError:
           print("Por favor, digite apenas números.")
           break
-        except IndexError:
+        except ExcecaoTamanhoInvalido:
           print("Por favor, digite uma data válida.")
           break
+        break
 
     def exibir_cliente(self):
         print("=================================================")
