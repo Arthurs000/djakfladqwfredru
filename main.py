@@ -1,6 +1,6 @@
 # 2º ano Informática Matutino - Arthur Sales, Camila Cuéllar e Maria Rita Nogueira
-# Programação Orientada a Objetos - 3º Bimestre
-# Programa de delivery com login de clientes e loop de repetição básico
+# Programação Orientada a Objetos - 4º Bimestre
+# Programa de delivery com login de clientes e loop de repetição básico com tratamento de exceção
 
 
 # criação das classes
@@ -229,7 +229,19 @@ class Cliente(Usuario):
           break
         print("=================================================")
         print("              🔒Informações Financeiras🔒")
-        self.numero_cartao = input("        Número do Cartão:")
+        try:
+          self.numero_cartao = input("        Número do Cartão:")
+          for r in self.numero_cartao:
+            if r.isdigit()==False:
+              raise ValueError
+          if len(self.numero_cartao) != 16:
+            raise IndexError
+        except ValueError:
+          print("Por favor, insira apenas números.")
+          break
+        except IndexError:
+          print("Por favor, insira um número de cartão válido")
+          break          
         self.cvv = input("        CVV:")
         self.validade_cartao = input("        Validade do Cartão:")
         break
