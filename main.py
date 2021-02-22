@@ -206,7 +206,7 @@ class Cliente(Usuario):
           for r in self.endereco.num_res:
             if r.isdigit()==False:
               raise ValueError
-            if len(self.endereco.num_res) != 4:
+            if len(self.endereco.num_res) != 4 and len(self.endereco.num_res) != 3:
               raise IndexError
         except ValueError:
           print ("Por favor, insira apenas números.")
