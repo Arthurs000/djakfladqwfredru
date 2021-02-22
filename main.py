@@ -242,9 +242,32 @@ class Cliente(Usuario):
         except IndexError:
           print("Por favor, insira um número de cartão válido")
           break          
-        self.cvv = input("        CVV:")
-        self.validade_cartao = input("        Validade do Cartão:")
-        break
+        try:
+          self.cvv = input("        CVV:")
+          for r in self.cvv:
+            if r.isdigit()==False:
+              raise ValueError
+          if len(self.cvv) != 3:
+            raise IndexError
+        except ValueError:
+          print("Por favor, insira apenas números.")
+          break
+        except IndexError:
+          print("Por favor, insira um cvv válido.")
+          break          
+        try:
+          self.validade_cartao = input("        Validade do Cartão:")
+          for r in self.validade_cartao:
+            if r.isdigit()==False:
+              raise ValueError
+          if len(self.validade_cartao) != 4:
+            raise IndexError
+        except ValueError:
+          print("Por favor, digite apenas números.")
+          break
+        except IndexError:
+          print("Por favor, digite uma data válida.")
+          break
 
     def exibir_cliente(self):
         print("=================================================")
