@@ -100,6 +100,9 @@ class Endereco:
 class ExcecaoTamanhoInvalido(Exception):
   pass
 
+class ExcecaoEmailInvalido(Exception):
+  pass
+
 class Usuario:
     def __init__(self, nome, email, senha, telefone):
         self.nome = nome
@@ -186,7 +189,13 @@ class Cliente(Usuario):
         except ValueError:
           print ("Por favor, utilize apenas letras.")
           break
-        self.email = input("        E-mail:")
+        try:
+          self.email = input("        E-mail:")
+          if "@" not in self.email or ".com" not in self.email:
+              raise ExcecaoEmailInvalido()
+        except ExcecaoEmailInvalido:
+          print("Por favor, insira um e-mail válido.")
+          break
         self.senha = input("        Senha:")
         try:
           self.telefone = input("        Telefone:")
