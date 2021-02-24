@@ -103,6 +103,10 @@ class ExcecaoTamanhoInvalido(Exception):
 class ExcecaoEmailInvalido(Exception):
   pass
 
+class ExcecaoSenhaInvalida(Exception):
+  pass
+
+
 class Usuario:
     def __init__(self, nome, email, senha, telefone):
         self.nome = nome
@@ -196,7 +200,16 @@ class Cliente(Usuario):
         except ExcecaoEmailInvalido:
           print("Por favor, insira um e-mail válido.")
           break
-        self.senha = input("        Senha:")
+        try:
+          self.senha = input("        Senha:") 
+          if self.senha.isalnum() == True:
+            if self.senha.isdigit() == True or self.senha.isalpha() == True:
+              raise ExcecaoSenhaInvalida()
+          else:
+            raise ExcecaoSenhaInvalida
+        except ExcecaoSenhaInvalida:
+          print("Por favor, utilize letras e números na senha.")
+          break
         try:
           self.telefone = input("        Telefone:")
           for r in self.telefone:
